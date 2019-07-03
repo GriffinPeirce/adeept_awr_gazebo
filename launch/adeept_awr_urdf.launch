@@ -20,7 +20,12 @@
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 1.0 -y 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+        args="-z 1.0 -y 1.0 -unpause -urdf -model adeept_awr -param robot_description" respawn="false" output="screen" />
+
+  <node name="robot_pose_publisher" pkg="adeept_awr_gazebo" type="publish_pose.py" output="screen" >
+    <param name="link_name" value="adeept_awr::chassis"/>
+    <param name="publish_rate" value="4" />
+  </node>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
