@@ -6,7 +6,7 @@
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
   <arg name="world_name" default="$(find enph_ai)/worlds/353.world"/>
-  <arg name="model" default="$(find adeept_awr_description)/urdf/adeept_awr.urdf"/>
+  <arg name="model" default="$(find adeept_awr_description)/urdf/adeept_awr.urdf.xacro"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="debug" value="$(arg debug)" />
@@ -20,10 +20,12 @@
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 1.0 -y 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+        args="-x 0.0 -y 0.3 -z 0.5 -Y 1.57 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="30.0" />
   </node>
 
+  <!-- TYLER ADDITION 2019-07-01 Mon 05:19 PM -->
+  <!-- <node pkg="joint_state_publisher" type="joint_state_publisher"  name="joint_state_publisher"/> -->
 </launch>
