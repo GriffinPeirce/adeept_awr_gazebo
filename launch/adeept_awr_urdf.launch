@@ -24,11 +24,12 @@
 
   <node name="robot_pose_publisher" pkg="adeept_awr_gazebo" type="publish_pose.py" output="screen" >
     <param name="link_name" value="adeept_awr::chassis"/>
-    <param name="publish_rate" value="4" />
+    <param name="frame_name" value="world"/>
+    <param name="publish_rate" value="35" />
   </node>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
-    <param name="publish_frequency" type="double" value="30.0" />
+    <param name="publish_frequency" type="double" value="30" />
   </node>
 
 </launch>
