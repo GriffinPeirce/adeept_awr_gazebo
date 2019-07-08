@@ -22,8 +22,14 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-x 0.0 -y 0.3 -z 0.5 -Y 1.57 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
 
+  <node name="robot_pose_publisher" pkg="adeept_awr_gazebo" type="publish_pose.py" output="screen" >
+    <param name="link_name" value="adeept_awr::chassis"/>
+    <param name="frame_name" value="world"/>
+    <param name="publish_rate" value="35" />
+  </node>
+  
   <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
-    <param name="publish_frequency" type="double" value="30.0" />
+    <param name="publish_frequency" type="double" value="30" />
   </node>
 
   <!-- TYLER ADDITION 2019-07-01 Mon 05:19 PM -->
